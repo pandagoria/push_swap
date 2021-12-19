@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	swap_ab(int *stck, int len, char stack)
 {
@@ -34,7 +34,7 @@ void	r_ab(int *stck, int len, char stack)
 	stck[i] = tmp;
 	if (stack == 'a')
 		write(1, "ra\n", 3);
-	else
+	else if (stack == 'b')
 		write(1, "rb\n", 3);
 }
 

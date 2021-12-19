@@ -78,8 +78,8 @@ int	main(int argc, char	**argv)
 		}
 	}
 	if (stck.len_a >= 60)
-		radix_sort(&stck);
+		big_sort(&stck);
 	else
-		min_sort(&stck);
+		mini_sort(&stck);
 	return (0);
 }

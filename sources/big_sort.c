@@ -1,11 +1,29 @@
-#include "push_swap.h"
+#include "../push_swap.h"
+
+void	sort_arr(s_tack *stck, int *arr)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 1;
+	while (i < stck->len_a)
+	{
+		j = i++;
+		while (j > 0 && arr[j] < arr[j - 1])
+		{
+			tmp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1] = tmp;
+			j -= 1;
+		}
+	}
+}
 
 int	*sorted_arr(s_tack *stck)
 {
 	int	*arr;
 	int	i;
-	int	j;
-	int	tmp;
 
 	i = 0;
 	arr = (int *) malloc (sizeof(int) * stck->len_a);
@@ -16,48 +34,48 @@ int	*sorted_arr(s_tack *stck)
 		arr[i] = stck->a[i];
 		i++;
 	}
-	i = 1;
-	while (i < stck->len_a)
-	{
-		j = i;
-		while (j > 0 && arr[j] < arr[j - 1])
-		{
-			tmp = arr[j];
-			arr[j] = arr[j - 1];
-			arr[j - 1] = tmp;
-			j -= 1;
-		}
-		i++;
-	}
+	sort_arr(stck, arr);
 	return (arr);
 }
 
-void	bite_operations(s_tack *stck)
+void	sort_radix(s_tack *stck, int i)
+{
+	if (is_sorted(stck->a, stck->len_a) == 1)
+	{
+		while (stck->len_b > 0)
+		{
+			write(1, "pa\n", 3);
+			push_a(stck);
+		}
+		return ;
+	}
+	if (((stck->a[0] >> i) & 1) == 1)
+		r_ab(stck->a, stck->len_a, 'a');
+	else
+	{
+		write(1, "pb\n", 3);
+		push_b(stck);
+	}
+}
+
+void	byte_operations(s_tack *stck)
 {
 	int	max;
 	int	max_bits;
 	int	i;
 	int	j;
-	int	num;
 
 	max = find_max(stck->a, stck->len_a) + 1;
 	max_bits = 0;
 	i = 0;
 	while ((max >> max_bits) != 0)
 		max_bits++;
-	while (i < max_bits && !is_sorted(stck->a, stck->len_a))
+	while (i < max_bits)
 	{
 		j = 0;
 		while (j < max)
 		{
-			num = stck->a[0];
-			if (((num >> i) & 1) == 1)
-				r_ab(stck->a, stck->len_a, 'a');
-			else
-			{
-				write(1, "pb\n", 3);
-				push_b(stck);
-			}
+			sort_radix(stck, i);
 			j++;
 		}
 		while (stck->len_b > 0)
@@ -65,11 +83,11 @@ void	bite_operations(s_tack *stck)
 			write(1, "pa\n", 3);
 			push_a(stck);
 		}
-		++i;
+        i++;
 	}
 }
 
-void	radix_sort(s_tack *stck)
+void	big_sort(s_tack *stck)
 {
 	int	*arr;
 	int	i;
@@ -93,5 +111,5 @@ void	radix_sort(s_tack *stck)
 		i++;
 	}
 	free(arr);
-	bite_operations(stck);
+	byte_operations(stck);
 }

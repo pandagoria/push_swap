@@ -1,8 +1,8 @@
 NAME =	push_swap
 
-SRCS =	push_swap.c r_rr_swap.c \
-		radix_sort.c min_sort.c check_input.c	\
-		push_ab.c utils.c \
+SRCS =	push_swap.c sources/r_rr_swap.c \
+		sources/big_sort.c sources/mini_sort.c sources/check_input.c	\
+		sources/push_ab.c sources/utils.c \
 
 OBJS =	$(SRCS:.c=.o)
 

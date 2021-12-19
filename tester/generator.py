@@ -3,7 +3,7 @@
 import random
 
 def main():
-    numbers = random.sample(range(-100, 900), 100)
+    numbers = random.sample(range(-100, 900), 500)
     random.shuffle(numbers)
     for j in numbers:
         print(j, end=' ')

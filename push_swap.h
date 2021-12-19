@@ -4,8 +4,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
-# include <limits.h>
-# include <stdio.h>
 
 typedef struct	t_value
 {
@@ -29,8 +27,8 @@ void	push_b(s_tack *stck);
 void	r_ab(int *stck, int len, char stack);
 void	rr_ab(int *stck, int len, char stack);
 int		*sorted_arr(s_tack *stck);
-void	radix_sort(s_tack *stck);
-void	min_sort(s_tack *stck);
+void	big_sort(s_tack *stck);
+void	mini_sort(s_tack *stck);
 void	tostack_b(s_tack *stck, t_value *prm);
 int		check_duplicate(int *stack, int index);
 int		check_int(int i, int argc, char	**argv);
@@ -39,5 +37,6 @@ int		find_min(int *stck, int len);
 int		find_max(int *stck, int len);
 int		is_sorted(int *stck, int len);
 int		rev_sorted(int *stck, int len);
+int		need_to_ra(s_tack *stck, int n);
 
 #endif

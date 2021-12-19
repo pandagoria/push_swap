@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_value	init_prm(void)
 {
@@ -47,24 +47,6 @@ void	sort_three(s_tack *stck, t_value *prm)
 	}
 }
 
-void	min_sort(s_tack *stck)
-{
-	t_value	prm;
-
-	prm = init_prm();
-	if (is_sorted(stck->a, stck->len_a) == 1)
-		return ;
-	while (is_sorted(stck->a, stck->len_a) == 0 && stck->len_a > 3)
-		tostack_b(stck, &prm);
-	while (is_sorted(stck->a, stck->len_a) == 0)
-		sort_three(stck, &prm);
-	while (stck->len_b != 0)
-	{
-		write(1, "pa\n", 3);
-		push_a(stck);
-	}
-}
-
 void	tostack_b(s_tack *stck, t_value *prm)
 {
 	int	i;
@@ -88,4 +70,22 @@ void	tostack_b(s_tack *stck, t_value *prm)
 	}
 	write(1, "pb\n", 3);
 	push_b(stck);
+}
+
+void	mini_sort(s_tack *stck)
+{
+	t_value	prm;
+
+	prm = init_prm();
+	if (is_sorted(stck->a, stck->len_a) == 1)
+		return ;
+	while (is_sorted(stck->a, stck->len_a) == 0 && stck->len_a > 3)
+		tostack_b(stck, &prm);
+	while (is_sorted(stck->a, stck->len_a) == 0)
+		sort_three(stck, &prm);
+	while (stck->len_b != 0)
+	{
+		write(1, "pa\n", 3);
+		push_a(stck);
+	}
 }
