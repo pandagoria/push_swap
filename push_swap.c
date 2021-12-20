@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlaunch <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/20 16:57:11 by hlaunch           #+#    #+#             */
+/*   Updated: 2021/12/20 16:57:18 by hlaunch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+#include "stdio.h"
 
 int	size_matrix(char **str)
 {
@@ -14,11 +27,12 @@ void	free_mat(char **mat, int i)
 {
 	while (i--)
 		free(mat[i]);
+	free(mat);
 }
 
-s_tack	init_stack(char	**str, int len, int i)
+t_tack	init_stack(char	**str, int len, int i)
 {
-	s_tack	stck;
+	t_tack	stck;
 
 	stck.b = NULL;
 	stck.len_b = 0;
@@ -39,11 +53,11 @@ s_tack	init_stack(char	**str, int len, int i)
 	return (stck);
 }
 
-s_tack	one_arg_input(char **argv)
+t_tack	one_arg_input(char **argv)
 {
 	char	**new_arg;
 	int		len;
-	s_tack	stck;
+	t_tack	stck;
 
 	new_arg = ft_split(argv[1], ' ');
 	len = size_matrix(new_arg);
@@ -61,7 +75,7 @@ s_tack	one_arg_input(char **argv)
 
 int	main(int argc, char	**argv)
 {
-	s_tack	stck;
+	t_tack	stck;
 
 	if (argc == 1 || !argv[1][0])
 		return (0);
@@ -81,5 +95,8 @@ int	main(int argc, char	**argv)
 		big_sort(&stck);
 	else
 		mini_sort(&stck);
+	free(stck.a);
+	if (stck.len_b > 0)
+		free(stck.b);
 	return (0);
 }

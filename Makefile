@@ -13,7 +13,7 @@ HEADERS = -I push_swap.h \
 
 CC = gcc
 
-FLAGS =	-MMD -Wall -Werror -Wextra -fsanitize=address
+FLAGS =	-MMD -Wall -Werror -Wextra
 
 .c.o:
 	$(CC) $(FLAGS) $(HEADERS) -c $< -o ${<:.c=.o}

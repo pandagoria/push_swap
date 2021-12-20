@@ -12,69 +12,61 @@
 
 #include "libft.h"
 
-static int	words_c(char const *s, char c)
+static int	get_size(char const	*s, char c)
 {
-	int	am;
-	int	flag;
-
-	am = 0;
-	flag = 0;
-	while (*s != '\0')
-	{
-		if (*s != c && flag == 0)
-		{
-			am++;
-			flag = 1;
-		}
-		else if (*s == c)
-			flag = 0;
-		s++;
-	}
-	return (am);
-}
-
-static int	word_len(const char *s, char c)
-{
+	int	size;
 	int	i;
 
+	size = 0;
 	i = 0;
-	while (*s != c && *s != '\0')
+	while (*(s + i))
 	{
-		i++;
-		s++;
+		if (*(s + i) != c)
+			size++;
+		while (*(s + i) != c && *(s + i))
+			i++;
+		if (*(s + i))
+			i++;
 	}
-	return (i);
+	size++;
+	return (size);
 }
 
-static void	free_mat(char **mat, int i)
+char	**filler(const char	*s, char c, char	**strs)
 {
-	while (i--)
-		free(mat[i]);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**mat;
-	int		words;
 	int		i;
+	int		j;
+	int		len;
+
+	j = 0;
+	i = 0;
+	while (*(s + i))
+	{
+		len = 0;
+		while (*(s + i) && *(s + i) == c)
+			i++;
+		while (*(s + i) && *(s + i) != c)
+		{
+			len++;
+			i++;
+		}
+		if (len > 0)
+			strs[j++] = ft_substr(s, i - len, len);
+		if (*(s + i))
+			i++;
+	}
+	return (strs);
+}
+
+char	**ft_split(char const	*s, char c)
+{
+	char	**strs;
 
 	if (!s)
 		return (0);
-	words = words_c(s, c);
-	mat = (char **) malloc((words + 1) * sizeof(char *));
-	if (mat == NULL)
-		return (NULL);
-	i = 0;
-	mat[words] = NULL;
-	while (i < words)
-	{
-		while (*s == c)
-			s++;
-		mat[i] = ft_substr(s, 0, (word_len(s, c)));
-		if (mat[i] == NULL)
-			free_mat(mat, i);
-		s = (s + word_len(s, c));
-		i++;
-	}
-	return (mat);
+	strs = (char **) ft_calloc(get_size(s, c), sizeof(char *));
+	if (!strs)
+		return (0);
+	filler(s, c, strs);
+	return (strs);
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   big_sort.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlaunch <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/20 16:57:38 by hlaunch           #+#    #+#             */
+/*   Updated: 2021/12/20 16:57:42 by hlaunch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void	sort_arr(s_tack *stck, int *arr)
+void	sort_arr(t_tack *stck, int *arr)
 {
 	int	i;
 	int	j;
@@ -20,7 +32,7 @@ void	sort_arr(s_tack *stck, int *arr)
 	}
 }
 
-int	*sorted_arr(s_tack *stck)
+int	*sorted_arr(t_tack *stck)
 {
 	int	*arr;
 	int	i;
@@ -38,7 +50,7 @@ int	*sorted_arr(s_tack *stck)
 	return (arr);
 }
 
-void	sort_radix(s_tack *stck, int i)
+void	sort_radix(t_tack *stck, int i)
 {
 	if (is_sorted(stck->a, stck->len_a) == 1)
 	{
@@ -58,7 +70,7 @@ void	sort_radix(s_tack *stck, int i)
 	}
 }
 
-void	byte_operations(s_tack *stck)
+void	byte_operations(t_tack *stck)
 {
 	int	max;
 	int	max_bits;
@@ -83,11 +95,11 @@ void	byte_operations(s_tack *stck)
 			write(1, "pa\n", 3);
 			push_a(stck);
 		}
-        i++;
+		i++;
 	}
 }
 
-void	big_sort(s_tack *stck)
+void	big_sort(t_tack *stck)
 {
 	int	*arr;
 	int	i;

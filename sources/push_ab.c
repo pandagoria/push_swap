@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_ab.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlaunch <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/20 16:58:20 by hlaunch           #+#    #+#             */
+/*   Updated: 2021/12/20 16:58:21 by hlaunch          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 int	*ft_intdup(int *s1, int len)
@@ -14,6 +26,7 @@ int	*ft_intdup(int *s1, int len)
 		dup[i] = s1[i];
 		i++;
 	}
+	free(s1);
 	return (dup);
 }
 
@@ -27,7 +40,8 @@ int	*push_copy_second(int *new_two, int *len, int *stck)
 	}
 	else if (*len <= 1)
 	{
-		free((void *) stck);
+		if (*len > 0)
+			free((void *) stck);
 		*len = 0;
 	}
 	return (stck);
@@ -46,7 +60,7 @@ int	*push_copy_first(int *new_one, int *stck, int len)
 	return (new_one);
 }
 
-void	push_a(s_tack *stck)
+void	push_a(t_tack *stck)
 {
 	int	*new_one;
 	int	*new_two;
@@ -72,7 +86,7 @@ void	push_a(s_tack *stck)
 	stck->b = push_copy_second(new_two, &stck->len_b, stck->b);
 }
 
-void	push_b(s_tack *stck)
+void	push_b(t_tack *stck)
 {
 	int	*new_one;
 	int	*new_two;
