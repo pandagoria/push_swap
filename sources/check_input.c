@@ -51,13 +51,12 @@ int	check_int(int i, int argc, char	**argv)
 	{
 		if ((argv[i][0] == '-') && (ft_strlen(argv[i]) >= 11))
 		{
-			if (ft_strlen(argv[i]) > 11 || argv[i][9] > '4'
-				|| argv[i][10] > '8')
+			if (ft_strncmp(argv[i], "-2147483648", 11) > 0)
 				return (1);
 		}
 		else if ((argv[i][0] != '-') && (ft_strlen(argv[i]) >= 10))
 		{
-			if (argv[i][8] > '4' || argv[i][9] > '7' || ft_strlen(argv[i]) > 10)
+			if (ft_strncmp(argv[i], "2147483647", 10) > 0) //(argv[i][8] > '4' || argv[i][9] > '7' || ft_strlen(argv[i]) > 10)
 				return (1);
 		}
 		i++;

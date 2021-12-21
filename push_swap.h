@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
-typedef struct t_tack
+typedef struct s_tack
 {
 	int	*a;
 	int	len_a;
